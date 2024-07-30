@@ -32,13 +32,11 @@ export const productsMockHandler = [
           id: 1,
           name: 'Option A',
           quantity: 10,
-          productId: 1,
         },
         {
           id: 2,
           name: 'Option B',
           quantity: 20,
-          productId: 1,
         },
       ]),
     );
