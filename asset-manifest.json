@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/minji2219/react-deploy/static/css/main.689b7bff.css",
-    "main.js": "/minji2219/react-deploy/static/js/main.e6bb42aa.js",
+    "main.js": "/minji2219/react-deploy/static/js/main.0e801975.js",
     "static/js/451.4c35b2e9.chunk.js": "/minji2219/react-deploy/static/js/451.4c35b2e9.chunk.js",
     "static/js/689.14b37f2e.chunk.js": "/minji2219/react-deploy/static/js/689.14b37f2e.chunk.js",
     "static/media/kakao_logo.svg": "/minji2219/react-deploy/static/media/kakao_logo.976fd2de0dc47a40dc4cad638b9b69e1.svg",
     "index.html": "/minji2219/react-deploy/index.html",
     "main.689b7bff.css.map": "/minji2219/react-deploy/static/css/main.689b7bff.css.map",
-    "main.e6bb42aa.js.map": "/minji2219/react-deploy/static/js/main.e6bb42aa.js.map",
+    "main.0e801975.js.map": "/minji2219/react-deploy/static/js/main.0e801975.js.map",
     "451.4c35b2e9.chunk.js.map": "/minji2219/react-deploy/static/js/451.4c35b2e9.chunk.js.map",
     "689.14b37f2e.chunk.js.map": "/minji2219/react-deploy/static/js/689.14b37f2e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.689b7bff.css",
-    "static/js/main.e6bb42aa.js"
+    "static/js/main.0e801975.js"
   ]
 }
