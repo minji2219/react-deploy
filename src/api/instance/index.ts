@@ -17,7 +17,7 @@ const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
 
   return instance;
 };
-const baseURL = apiSessionStorage.get();
+const baseURL = apiSessionStorage.get() || 'http://43.201.63.181:8080';
 export const BASE_URL = baseURL;
 // TODO: 추후 서버 API 주소 변경 필요
 export const fetchInstance = initInstance({
