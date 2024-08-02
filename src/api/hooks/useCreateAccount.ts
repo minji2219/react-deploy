@@ -6,7 +6,7 @@ type Props = {
   email: string;
   password: string;
 };
-export const createAccountPath = () => `${BASE_URL}/api/members/register`;
+export const createAccountPath = () => `${BASE_URL}/members/register`;
 
 export const createAccount = async ({ email, password }: Props) => {
   return fetchInstance.post(createAccountPath(), {
