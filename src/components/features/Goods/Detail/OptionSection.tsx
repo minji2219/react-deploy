@@ -7,7 +7,6 @@ import {
   type ProductDetailRequestParams,
   useGetProductDetail,
 } from '@/api/hooks/useGetProductDetail';
-import { useGetProductOptions } from '@/api/hooks/useGetProductOptions';
 import { Button } from '@/components/common/Button';
 import { useAuth } from '@/provider/Auth';
 import { getDynamicPath, RouterPath } from '@/routes/path';
@@ -19,7 +18,6 @@ type Props = ProductDetailRequestParams;
 
 export const OptionSection = ({ productId }: Props) => {
   const { data: detail } = useGetProductDetail({ productId });
-  const { data: options } = useGetProductOptions({ productId });
   const mutation = useAddWishList({ productId });
 
   const [countAsString, setCountAsString] = useState('1');
@@ -29,6 +27,7 @@ export const OptionSection = ({ productId }: Props) => {
 
   const navigate = useNavigate();
   const authInfo = useAuth();
+
   const handleWhishedClick = () => {
     if (!authInfo) {
       const isConfirm = window.confirm(
@@ -41,6 +40,7 @@ export const OptionSection = ({ productId }: Props) => {
 
     mutation.mutate();
   };
+
   const handleGiftClick = () => {
     if (!authInfo) {
       const isConfirm = window.confirm(
@@ -61,7 +61,7 @@ export const OptionSection = ({ productId }: Props) => {
 
   return (
     <Wrapper>
-      <CountOptionItem name={options[0].name} value={countAsString} onChange={setCountAsString} />
+      <CountOptionItem options={detail.options} value={countAsString} onChange={setCountAsString} />
       <BottomWrapper>
         <PricingWrapper>
           총 결제 금액 <span>{totalPrice}원</span>

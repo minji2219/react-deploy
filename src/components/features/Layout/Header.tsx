@@ -1,16 +1,26 @@
+import { Select } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { Container } from '@/components/common/layouts/Container';
 import { useAuth } from '@/provider/Auth';
 import { getDynamicPath, RouterPath } from '@/routes/path';
+import { apiSessionStorage } from '@/utils/storage';
 
 export const Header = () => {
   const navigate = useNavigate();
   const authInfo = useAuth();
+  const [value, setValue] = useState(apiSessionStorage.get() || 'http://3.39.224.164:8080');
 
   const handleLogin = () => {
     navigate(getDynamicPath.login());
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    apiSessionStorage.set(e.target.value);
+    setValue(e.target.value);
+    // window.location.reload();
   };
 
   return (
@@ -22,7 +32,13 @@ export const Header = () => {
             alt="카카오 선물하기 로고"
           />
         </Link>
+
         <RightWrapper>
+          <Select w="200" onChange={handleChange} defaultValue={value}>
+            <option value="http://3.39.224.164:8080">김수랑</option>
+            <option value="https://api.example.com/2">백엔드2</option>
+            <option value="https://api.example.com/3">백엔드3</option>
+          </Select>
           {authInfo ? (
             <LinkButton onClick={() => navigate(RouterPath.myAccount)}>내 계정</LinkButton>
           ) : (
@@ -49,7 +65,11 @@ export const Wrapper = styled.header`
 const Logo = styled.img`
   height: ${HEADER_HEIGHT};
 `;
-const RightWrapper = styled.div``;
+const RightWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
 
 const LinkButton = styled.p`
   align-items: center;

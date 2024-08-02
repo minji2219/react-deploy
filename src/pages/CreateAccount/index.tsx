@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
+import { useCreateAccount } from '@/api/hooks/useCreateAccount';
 import KAKAO_LOGO from '@/assets/kakao_logo.svg';
 import { Button } from '@/components/common/Button';
 import { UnderlineTextField } from '@/components/common/Form/Input/UnderlineTextField';
@@ -8,16 +9,31 @@ import { Spacing } from '@/components/common/layouts/Spacing';
 import { breakpoints } from '@/styles/variants';
 
 export const CreateAccount = () => {
-  const [id, setId] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { mutate, error } = useCreateAccount({ email, password });
+  const handleConfirm = () => {
+    if (error) {
+      //TODO:수정
+      console.log(error.response.data.message);
+    }
 
-  const handleConfirm = () => {};
+    if (!email || !password) {
+      alert('아이디와 비밀번호를 입력해주세요.');
+      return;
+    }
+    mutate();
+  };
 
   return (
     <Wrapper>
       <Logo src={KAKAO_LOGO} alt="카카고 CI" />
       <FormWrapper>
-        <UnderlineTextField placeholder="이름" value={id} onChange={(e) => setId(e.target.value)} />
+        <UnderlineTextField
+          placeholder="이름"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <Spacing />
         <UnderlineTextField
           type="password"

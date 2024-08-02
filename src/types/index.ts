@@ -12,13 +12,14 @@ export type ProductData = {
   price: number;
   imageUrl: string;
   categoryId?: number;
+  options: ProductOptionsData[];
 };
 
 export type ProductOptionsData = {
   id: number;
   name: string;
   quantity: number;
-  productId: number;
+  productId?: number;
 };
 
 export type GoodsDetailOptionItemData = {

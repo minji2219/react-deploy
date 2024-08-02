@@ -4,7 +4,7 @@ import type { CategoryData } from '@/types';
 
 import { BASE_URL, fetchInstance } from '../instance';
 
-export type CategoryResponseData = CategoryData[];
+export type CategoryResponseData = { categories: CategoryData[] };
 
 export const getCategoriesPath = () => `${BASE_URL}/api/categories`;
 const categoriesQueryKey = [getCategoriesPath()];
@@ -18,4 +18,5 @@ export const useGetCategories = () =>
   useQuery({
     queryKey: categoriesQueryKey,
     queryFn: getCategories,
+    select: (response) => response.categories,
   });
