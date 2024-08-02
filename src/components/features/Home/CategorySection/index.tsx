@@ -10,9 +10,11 @@ import { breakpoints } from '@/styles/variants';
 import { CategoryItem } from './CategoryItem';
 
 export const CategorySection = () => {
-  const { data, isLoading, isError } = useGetCategories();
-
-  if (isLoading || isError) return null;
+  const { data, isLoading, isError, error } = useGetCategories();
+  if (isError) {
+    console.log(error);
+  }
+  if (isLoading) return null;
   if (!data) return null;
 
   return (

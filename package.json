@@ -91,6 +91,5 @@
     "moduleNameMapper": {
       "^axios$": "axios/dist/node/axios.cjs"
     }
-  },
-  "homepage": "https://minji2219.github.io/react-deploy"
+  }
 }

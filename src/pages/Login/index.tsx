@@ -9,13 +9,13 @@ import { UnderlineTextField } from '@/components/common/Form/Input/UnderlineText
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { RouterPath } from '@/routes/path';
 import { breakpoints } from '@/styles/variants';
-import { authSessionStorage } from '@/utils/storage';
+// import { authSessionStorage } from '@/utils/storage';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [queryParams] = useSearchParams();
-  const { mutate } = useLogin({ email, password });
+  const { mutate, error, isError, data } = useLogin({ email, password });
 
   const handleConfirm = () => {
     if (!email || !password) {
@@ -23,10 +23,14 @@ export const LoginPage = () => {
       return;
     }
 
-    // TODO: API 연동
     mutate();
-    // TODO: API 연동 전까지 임시 로그인 처리
-    authSessionStorage.set(email);
+    console.log(data);
+    if (isError) {
+      console.log(error);
+      return;
+    }
+
+    // authSessionStorage.set(email);
 
     const redirectUrl = queryParams.get('redirect') ?? `${window.location.origin}/`;
     return window.location.replace(redirectUrl);

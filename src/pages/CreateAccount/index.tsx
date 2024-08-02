@@ -11,8 +11,13 @@ import { breakpoints } from '@/styles/variants';
 export const CreateAccount = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { mutate } = useCreateAccount({ email, password });
+  const { mutate, error } = useCreateAccount({ email, password });
   const handleConfirm = () => {
+    if (error) {
+      //TODO:수정
+      console.log(error.response.data.message);
+    }
+
     if (!email || !password) {
       alert('아이디와 비밀번호를 입력해주세요.');
       return;

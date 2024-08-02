@@ -11,7 +11,7 @@ import { apiSessionStorage } from '@/utils/storage';
 export const Header = () => {
   const navigate = useNavigate();
   const authInfo = useAuth();
-  const [value, setValue] = useState(apiSessionStorage.get() || 'https://api.example.com/1');
+  const [value, setValue] = useState(apiSessionStorage.get() || 'http://3.39.224.164:8080');
 
   const handleLogin = () => {
     navigate(getDynamicPath.login());
@@ -20,7 +20,7 @@ export const Header = () => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     apiSessionStorage.set(e.target.value);
     setValue(e.target.value);
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
@@ -35,7 +35,7 @@ export const Header = () => {
 
         <RightWrapper>
           <Select w="200" onChange={handleChange} defaultValue={value}>
-            <option value="https://api.example.com/1">백엔드1</option>
+            <option value="http://3.39.224.164:8080">김수랑</option>
             <option value="https://api.example.com/2">백엔드2</option>
             <option value="https://api.example.com/3">백엔드3</option>
           </Select>
