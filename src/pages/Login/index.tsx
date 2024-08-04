@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useLogin } from '@/api/hooks/useLogin';
 import KAKAO_LOGO from '@/assets/kakao_logo.svg';
@@ -9,31 +9,18 @@ import { UnderlineTextField } from '@/components/common/Form/Input/UnderlineText
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { RouterPath } from '@/routes/path';
 import { breakpoints } from '@/styles/variants';
-// import { authSessionStorage } from '@/utils/storage';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [queryParams] = useSearchParams();
-  const { mutate, error, isError, data } = useLogin({ email, password });
+  const { mutate, error } = useLogin({ email, password });
 
   const handleConfirm = () => {
     if (!email || !password) {
       alert('아이디와 비밀번호를 입력해주세요.');
       return;
     }
-
     mutate();
-    console.log(data);
-    if (isError) {
-      console.log(error);
-      return;
-    }
-
-    // authSessionStorage.set(email);
-
-    const redirectUrl = queryParams.get('redirect') ?? `${window.location.origin}/`;
-    return window.location.replace(redirectUrl);
   };
 
   return (
@@ -59,6 +46,9 @@ export const LoginPage = () => {
             sm: 60,
           }}
         />
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore */}
+        {error ? <div>{error.response.data.message}</div> : <></>}
         <Button onClick={handleConfirm}>로그인</Button>
         <Spacing height={15} />
         <Link to={RouterPath.createAccount}>

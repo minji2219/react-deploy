@@ -13,16 +13,18 @@ export const CreateAccount = () => {
   const [password, setPassword] = useState('');
   const { mutate, error } = useCreateAccount({ email, password });
   const handleConfirm = () => {
-    if (error) {
-      //TODO:수정
-      console.log(error.response.data.message);
-    }
-
     if (!email || !password) {
       alert('아이디와 비밀번호를 입력해주세요.');
       return;
     }
     mutate();
+    if (error) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      console.log(error.response.data.message);
+    }
+    //TODO:회원가입 후 처리
+    alert('회원가입 성공');
   };
 
   return (
