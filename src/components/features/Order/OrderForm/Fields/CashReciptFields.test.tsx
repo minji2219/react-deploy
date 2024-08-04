@@ -5,7 +5,8 @@ import { OrderForm } from '..';
 
 test('현금영수증 미발급시 현금영수증 타입 비활성화', async () => {
   const orderHistory = {
-    id: 3245119,
+    productId: 160,
+    optionId: 3245119,
     count: 1,
   };
   render(
@@ -33,7 +34,8 @@ test('현금영수증 미발급시 현금영수증 타입 비활성화', async (
 
 test('현금영수증 발급시 현금영수증 타입과 전화번호 입력 필수', async () => {
   const orderHistory = {
-    id: 3245119,
+    productId: 160,
+    optionId: 3245119,
     count: 1,
   };
   render(
