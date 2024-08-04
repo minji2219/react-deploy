@@ -7,13 +7,16 @@ import type { ProductData } from '@/types';
 import { WishItem } from './WishItem';
 
 export const WishList = () => {
-  const { data, isLoading, isError } = useGetWishList();
+  const { data, isLoading, error } = useGetWishList();
 
   if (isLoading) {
     return <LoadingView />;
   }
-  if (isError) {
-    return <div>에러 입니다.</div>;
+  if (error) {
+    console.log(error);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    return <div>{error.response.data.message}</div>;
   }
 
   return (
