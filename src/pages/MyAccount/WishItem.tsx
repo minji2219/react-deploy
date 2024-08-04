@@ -2,6 +2,7 @@ import { Card, CardBody, Heading } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import { useDeleteWishList } from '@/api/hooks/useDeleteWish';
+import { queryClient } from '@/api/instance';
 import { Image } from '@/components/common/Image';
 
 type Props = {
@@ -14,8 +15,8 @@ type Props = {
 export const WishItem = ({ name, price, imageUrl, wishId }: Props) => {
   const { mutate } = useDeleteWishList(wishId);
   const handleClick = () => {
-    //TODO: wishlist에서 해당 항목 삭제
     mutate();
+    queryClient.invalidateQueries({ queryKey: ['wishes'] });
   };
   return (
     <Card direction={{ base: 'column', sm: 'row' }} overflow="hidden" variant="outline">
