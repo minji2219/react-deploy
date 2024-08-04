@@ -14,7 +14,7 @@ const options = [
 test('- 버튼 클릭시 수량 감소', () => {
   render(
     <QueryClientProvider client={new QueryClient()}>
-      <CountOptionItem options={options} value="1" onChange={() => {}} />
+      <CountOptionItem options={options} value="1" onChange={() => {}} setOptionId={() => {}} />
     </QueryClientProvider>,
   );
   const decreaseButton = screen.getByLabelText('수량 1개 감소');

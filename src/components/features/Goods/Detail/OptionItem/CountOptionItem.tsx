@@ -13,10 +13,18 @@ type Props = {
   minValues?: number;
   value: string;
   onChange: (value: string) => void;
+  setOptionId: (id: string) => void;
 };
 
-export const CountOptionItem = ({ options, minValues = 1, value, onChange }: Props) => {
+export const CountOptionItem = ({
+  options,
+  minValues = 1,
+  value,
+  onChange,
+  setOptionId,
+}: Props) => {
   const [maxValue, setMaxValue] = useState(100);
+
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } = useNumberInput({
     step: 1,
     min: minValues,
@@ -29,14 +37,18 @@ export const CountOptionItem = ({ options, minValues = 1, value, onChange }: Pro
   const increment = getIncrementButtonProps();
   const decrement = getDecrementButtonProps();
   const input = getInputProps();
+
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setMaxValue(Number(e.target.value));
+    const option = JSON.parse(e.target.value);
+    setMaxValue(Number(option.quantity));
+    setOptionId(option.id);
   };
+
   return (
     <Wrapper>
       <Select onChange={handleChange}>
         {options.map((option) => (
-          <option key={option.id} value={option.quantity}>
+          <option key={option.id} value={JSON.stringify(option)}>
             {option.name}
           </option>
         ))}

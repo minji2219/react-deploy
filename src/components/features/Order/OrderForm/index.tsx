@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { useMakeOrder } from '@/api/hooks/useMakeOrder';
 import { Spacing } from '@/components/common/layouts/Spacing';
 import { SplitLayout } from '@/components/common/layouts/SplitLayout';
 import type { OrderFormData, OrderHistory } from '@/types';
@@ -15,11 +16,11 @@ type Props = {
 };
 
 export const OrderForm = ({ orderHistory }: Props) => {
-  const { id, count } = orderHistory;
-
+  const { mutate } = useMakeOrder();
+  const { optionId, count } = orderHistory;
   const methods = useForm<OrderFormData>({
     defaultValues: {
-      productId: id,
+      productId: optionId,
       productQuantity: count,
       senderId: 0,
       receiverId: 0,
@@ -35,6 +36,12 @@ export const OrderForm = ({ orderHistory }: Props) => {
       alert(errorMessage);
       return;
     }
+    mutate({
+      id: optionId,
+      count,
+      message: values.messageCardTextMessage,
+      phoneNumber: values.cashReceiptNumber,
+    });
 
     console.log('values', values);
     alert('주문이 완료되었습니다.');

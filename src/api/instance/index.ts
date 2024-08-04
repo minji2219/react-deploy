@@ -17,7 +17,7 @@ const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
 
   return instance;
 };
-const baseURL = apiSessionStorage.get() || 'http://3.39.224.164:8080';
+const baseURL = apiSessionStorage.get() || process.env.REACT_APP_API_URL_KSR;
 export const BASE_URL = baseURL;
 // TODO: 추후 서버 API 주소 변경 필요
 export const fetchInstance = initInstance({
@@ -27,7 +27,7 @@ export const fetchInstance = initInstance({
 export const fetchAuthInstance = initInstance({
   baseURL: baseURL,
   headers: {
-    Authorization: `Bearer ${authSessionStorage.get()}`,
+    Authorization: `Bearer ${authSessionStorage.get()?.token}`,
   },
 });
 

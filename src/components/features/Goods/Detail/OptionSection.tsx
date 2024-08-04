@@ -21,6 +21,8 @@ export const OptionSection = ({ productId }: Props) => {
   const mutation = useAddWishList({ productId });
 
   const [countAsString, setCountAsString] = useState('1');
+  const [optionId, setOptionId] = useState(productId);
+
   const totalPrice = useMemo(() => {
     return detail.price * Number(countAsString);
   }, [detail, countAsString]);
@@ -52,7 +54,8 @@ export const OptionSection = ({ productId }: Props) => {
     }
 
     orderHistorySessionStorage.set({
-      id: parseInt(productId),
+      optionId: parseInt(optionId),
+      productId: parseInt(productId),
       count: parseInt(countAsString),
     });
 
@@ -61,7 +64,12 @@ export const OptionSection = ({ productId }: Props) => {
 
   return (
     <Wrapper>
-      <CountOptionItem options={detail.options} value={countAsString} onChange={setCountAsString} />
+      <CountOptionItem
+        options={detail.options}
+        value={countAsString}
+        onChange={setCountAsString}
+        setOptionId={setOptionId}
+      />
       <BottomWrapper>
         <PricingWrapper>
           총 결제 금액 <span>{totalPrice}원</span>

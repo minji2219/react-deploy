@@ -33,7 +33,8 @@ export type GoodsDetailOptionItemData = {
 };
 
 export type OrderHistory = {
-  id: number;
+  optionId: number;
+  productId: number;
   count: number;
 };
 

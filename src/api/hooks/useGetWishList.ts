@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { BASE_URL, fetchInstance } from '../instance';
+import { BASE_URL, fetchAuthInstance } from '../instance';
 
 type Params = {
   page: number;
@@ -10,7 +10,7 @@ type Params = {
 export const getWishListPath = `${BASE_URL}/api/wishes`;
 
 export const getWishList = async (params?: Params) => {
-  const response = await fetchInstance.get(getWishListPath, {
+  const response = await fetchAuthInstance.get(getWishListPath, {
     params: params,
   });
   return response.data;

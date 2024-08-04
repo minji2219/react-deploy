@@ -1,11 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { BASE_URL, fetchInstance } from '../instance';
+import { BASE_URL, fetchAuthInstance } from '../instance';
 
 export const deleteWishListPath = (wishId: number) => `${BASE_URL}/api/wishes/${wishId}`;
 
 export const deleteWishList = async (wishId: number) => {
-  return fetchInstance.delete(deleteWishListPath(wishId));
+  return fetchAuthInstance.delete(deleteWishListPath(wishId));
 };
 
 export const useDeleteWishList = (wishId: number) => {
